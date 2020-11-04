@@ -1,0 +1,41 @@
+<!--pages/cus/cusview.wxml-->
+<view class="page" data-weui-theme="{{theme}}">
+  	<view class="page__bd">
+		<view class="weui-search-bar weui-search-bar_focusing}" id="searchBar">
+			<form class="weui-search-bar__form">
+				<view class="weui-search-bar__box">
+				           	<i class="weui-icon-search"></i>
+                    <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+                    <span class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput"></span>
+				</view>
+				<label class="weui-search-bar__label" bindtap="showInput">
+					<i class="weui-icon-search"></i>
+                    <span class="weui-search-bar__text" >搜索</span>
+				</label>
+			</form>
+            <view class="weui-search-bar__cancel-btn" bindtap="search">搜索</view>
+		</view>
+		<view class="weui-cells searchbar-result" wx:if="{{inputVal.length > 0}}">
+			<view  wx:for="{{inputValList}}" wx:key="cusNo"  class="weui-cell  weui-cell_access" >
+				<view class="weui-cell__bd weui-cell_primary">
+					<view bindtap="navdetails" data-bean="{{item}}">{{item.cusName}}</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="weui-panel weui-panel_access">
+			<view class="weui-panel__hd">商户列表</view>
+			<view class="weui-panel__bd" wx:for="{{cuslist}}" wx:key="cus_id" >
+				<view  class="weui-media-box weui-media-box_text" bindtap="navdetail" id="{{index}}">
+					<h4 class="weui-media-box__title">{{item.cusName}}</h4>
+					<view class="weui-media-box__desc">{{item.cusAddress}}</view>
+				</view>
+			</view>
+			<view class="weui-panel__ft">
+				<a class="weui-cell weui-cell_access weui-cell_link">
+					<view class="weui-cell__bd" bindtap="search" id="more">查看更多</view>
+					<text class="weui-cell__ft"></text>
+				</a>
+			</view>
+		</view>
+</view>

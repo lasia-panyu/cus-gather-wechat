@@ -1,0 +1,8 @@
+<!--pages/tinyloan/msg.wxml-->
+
+<view class="container">
+  <view class="page-body">
+    <text>pages/tinyloan/msg.wxml</text>
+  </view>
+</view>
+

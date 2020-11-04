@@ -1,0 +1,57 @@
+<view class="page" data-weui-theme="{{theme}}">
+
+    <view class="page__bd">
+        <view class="weui-cells">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">
+                    <view class="weui-uploader">
+                        <view class="weui-uploader__hd">
+                          <view class="weui-uploader__overview">
+                              <view class="weui-uploader__title">图片上传</view>
+                              <view class="weui-uploader__info">{{files.length}}/2</view>
+                          </view>
+                          <view class="weui-uploader__tips">
+                            {{imagetype}}
+                          </view>
+                        </view>
+                        <view class="weui-uploader__bd">
+                            <view class="weui-uploader__files" id="uploaderFiles">
+                                <block wx:for="{{files}}" wx:key="*this">
+                                    <view class="weui-uploader__file weui-uploader__file_status" bindtap="previewImage" id="{{item}}">
+                                        <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                                        <block wx:if="{{loading}}">
+                                        <view  class="weui-uploader__file-content">
+                                            <view class="weui-loading"></view>
+                                        </view>
+                                        </block>
+                                    </view>
+                                </block>
+                            </view>
+                            <view class="weui-uploader__input-box">
+                                <view class="weui-uploader__input" bindtap="chooseImage"></view>
+                            </view>
+                        </view>
+
+                    </view>
+                </view>
+            </view>
+        </view>
+	    <view class="fadeIn {{hideLoading ? 'fadeOut' : ''}}" wx:if="{{sloading}}">
+		  <view class="weui-mask_transparent"></view>
+		  <view class="weui-toast">
+			<i class="weui-loading weui-icon_toast"></i>
+			<view class="weui-toast__content">数据加载中</view>
+		  </view>
+	    </view>
+		</view>
+    <view class="weui-cells__title">识别后文字</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_active">
+                <view class="weui-cell__bd">
+                    <textarea class="weui-textarea" maxlength="-1" placeholder="{{orccontenttips}}" style="height: 17.3em" value="{{orccontent}}"></textarea>
+                    <view class="weui-textarea-counter">0/200</view>
+                </view>
+            </view>
+    </view>
+
+</view>

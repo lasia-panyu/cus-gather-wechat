@@ -1,0 +1,139 @@
+<view class="page" data-weui-theme="{{theme}}">
+    
+
+
+    
+  
+    <view class="page__bd">
+    
+                <view class="weui-cells">  
+        		    <view class="weui-cell">
+						<view class="weui-cell__hd"><label class="weui-label">名称</label></view>
+						<view class="weui-cell__bd">
+							<input id="name"  class="weui-input" placeholder="{{orccontenttips}}" placeholder-class="weui-input__placeholder" bindinput="updateValue"  value="{{cus.cusName}}"/>
+						</view>
+					</view>
+					<view class="weui-cell">
+						<view class="weui-cell__hd" bindtap="openlocation">							
+                            <label class="weui-label">位置</label>
+                        </view>
+						<view class="weui-cell__bd">
+							<input id="address" class="weui-input" placeholder="点击位置打开地图" placeholder-class="weui-input__placeholder" bindinput="updateValue" value="{{cus.cusAddress}}" />
+						</view>
+					</view>
+					<view class="weui-cell">
+						<view class="weui-cell__hd">							
+                            <label class="weui-label">手机号</label>
+                        </view>
+						<view class="weui-cell__bd">
+							<input class="weui-input" id="desc" placeholder="手机号" bindinput="updateValue"  type="number" placeholder-class="weui-input__placeholder" value="{{cus.cusPhone}}"/>
+						</view>
+					</view>
+                    <view class="weui-cells__title">选择</view>
+                     <view class="weui-cells weui-cells_after-title">
+                         <view class="weui-cell  weui-cell_select">
+                                 <view class="weui-cell__bd">
+                                        <picker bindchange="bindAccountChange" value="{{accountIndex}}" range="{{accounts}}">
+                                       <view class="weui-select">{{accounts[accountIndex]}}</view>
+                                        </picker>
+                                </view>
+                         </view>
+                </view>   
+</view>
+        <view class="weui-cells">     
+            <view class="weui-cell">
+                <view class="weui-cell__bd">
+                    <view class="weui-uploader">
+                        <view class="weui-uploader__hd">
+                          <view class="weui-uploader__overview">
+                              <view class="weui-uploader__title">图片上传</view>
+                              <view class="weui-uploader__info">{{files.length}}/1</view>
+                          </view>
+                          <view class="weui-uploader__tips">
+                            拍摄客户各类信息
+                          </view>
+                        </view>
+                        <view class="weui-uploader__bd">
+                            <view class="weui-uploader__files" id="uploaderFiles">
+ 
+                                <block wx:if="{{chooseflag}}">
+                                    <view class="weui-uploader__file weui-uploader__file_status" bindtap="previewImage" id="cusPhoto">
+                                        <image class="weui-uploader__img" src="{{imageurl}}" mode="aspectFill" />
+                                        <view  class="weui-uploader__file-content">
+                                            <view class="weui-loading"></view>
+                                        </view>
+                                    </view>
+                               </block>   
+
+                                <block wx:if="{{accountIndex==0}}">
+                                <block wx:for="{{cus.cusImage}}" wx:key="id">
+                                    <view class="weui-uploader__file weui-uploader__file_status" bindtap="previewImage" id="{{item}}">
+                                        <image class="weui-uploader__img" src="{{item.imageUrl}}" mode="aspectFill" />
+                                        <block wx:if="{{loading}}">
+                                        <view  class="weui-uploader__file-content">
+                                            <view class="weui-loading"></view>
+                                        </view>
+                                        </block>
+                                    </view>
+                                </block>
+                                </block>
+                                 
+                                <block wx:if="{{accountIndex==1}}">
+                                    <block wx:if="{{!chooseflag}}">
+                                        <view class="weui-uploader__file weui-uploader__file_status" bindtap="previewImage" >
+                                        <image class="weui-uploader__img" src="{{cus.cusIDcard.imageUrl}}" mode="aspectFill" />
+                                        <block wx:if="{{loading}}">
+                                        <view  class="weui-uploader__file-content">
+                                            <view class="weui-loading"></view>
+                                        </view>
+                                        </block>
+                                       
+                                        </view> 
+                                    </block>
+                                </block> 
+
+                                <block wx:if="{{accountIndex==2}}">
+                                <block wx:for="{{cus.cusBankcard}}" wx:key="id">
+                                     <view class="weui-uploader__file weui-uploader__file_status" bindtap="previewImage" id="{{item}}">
+                                        <image class="weui-uploader__img" src="{{item.imageUrl}}" mode="aspectFill" />
+                                        <block wx:if="{{loading}}">
+                                        <view  class="weui-uploader__file-content">
+                                            <view class="weui-loading"></view>
+                                        </view>
+                                        </block>
+                                    </view>
+                                </block> 
+                                </block> 
+                                <block wx:if="{{accountIndex==3}}">
+                                     <block wx:if="{{!chooseflag}}">
+                                     <view class="weui-uploader__file weui-uploader__file_status" bindtap="previewImage" >
+                                        <image class="weui-uploader__img" src="{{cus.cusLicense.imageUrl}}" mode="aspectFill" />
+                                        <block wx:if="{{loading}}">
+                                        <view  class="weui-uploader__file-content">
+                                            <view class="weui-loading"></view>
+                                        </view>
+                                        </block>
+                                    </view>
+                                    </block>
+                                </block> 
+                                
+
+                            </view>
+                            <view class="weui-uploader__input-box">
+                                <view class="weui-uploader__input" bindtap="chooseImage"></view>
+                            </view>
+                  
+                        </view>
+       
+                    </view>
+                </view>
+            </view>
+
+        </view>
+         <view class="weui-cells">  
+                     <view class="weui-cell">
+			                     <a class="weui-btn  weui-btn_primary" bindtap="saveall">保存</a>
+                            </view>
+                        </view>
+    </view>
+</view>

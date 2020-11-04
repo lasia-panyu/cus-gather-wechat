@@ -1,0 +1,79 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/cus/cusadd",
+    "pages/cus/cusview",
+    "pages/cus/cusedit",
+    "pages/orc/orctest",
+    "pages/example/uploader/uploader",
+ 
+  
+   
+    "pages/example/index",
+    "pages/example/button/button",
+    "pages/example/input/input",
+    "pages/example/form/form",
+    "pages/example/form/form_page",
+    "pages/example/form/form_input_status",
+    "pages/example/form/form_vcode",
+    "pages/example/form/form_checkbox",
+    "pages/example/form/form_radio",
+    "pages/example/form/form_switch",
+    "pages/example/form/form_select",
+    "pages/example/form/form_textarea",
+    "pages/example/list/list",
+    "pages/example/slideview/slideview",
+    "pages/example/slider/slider",
+   
+
+    "pages/example/article/article",
+    "pages/example/badge/badge",
+    "pages/example/flex/flex",
+    "pages/example/footer/footer",
+    "pages/example/gallery/gallery",
+    "pages/example/grid/grid",
+    "pages/example/icons/icons",
+    "pages/example/loading/loading",
+    "pages/example/loadmore/loadmore",
+    "pages/example/panel/panel",
+    "pages/example/preview/preview",
+    "pages/example/progress/progress",
+    "pages/example/actionsheet/actionsheet",
+    "pages/example/half-screen-dialog/half-screen-dialog",
+    "pages/example/dialog/dialog",
+    "pages/example/msg/msg",
+    "pages/example/msg/msg_text",
+    "pages/example/msg/msg_text_primary",
+    "pages/example/msg/msg_success",
+    "pages/example/msg/msg_warn",
+    "pages/example/picker/picker",
+    "pages/example/toast/toast",
+    "pages/example/top-tips/top-tips",
+
+    "pages/example/navigation-bar/navigation-bar",
+    "pages/example/tabbar/tabbar",
+
+    "pages/example/searchbar/searchbar",
+    "pages/tinyloan/msg",
+
+    "pages/logs/logs"
+  
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "小微贷客户信息采集",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "useExtendedLib": {
+    "weui": true
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "定位商户位置" 
+    }
+  }
+
+}
