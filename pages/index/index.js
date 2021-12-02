@@ -48,12 +48,57 @@ Page({
     })
   },
   getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
+    // console.log(e)
+    // app.globalData.userInfo = e.detail.userInfo
+    // this.setData({
+    //   userInfo: e.detail.userInfo,
+    //   hasUserInfo: true
+    // })
+       // 查看是否授权
+       var that=this
+       wx.getSetting({
+         success (res){
+           if (res.authSetting['scope.userInfo']) {
+             // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+ 
+             wx.login({
+                 success: function(res) {
+                 // 获取登录的临时凭证
+                 var code = res.code;
+                 // 调用后端，获取微信的session_key, secret
+                 console.log(res.code)
+                 wx.request({
+                   url: app.globalData.urlc+"/wxLogin",
+                   method: "POST",
+                   data:{
+                     code:res.code
+                   },
+                   header: {
+                     'content-type': 'application/x-www-form-urlencoded'
+                   },
+                   success: function(result) {
+                     console.log(result.data);
+                     // 保存用户信息到本地缓存，可以用作小程序端的拦截器
+                     app.globalData.openid=result.data
+                    }
+                  })  
+                 }
+               }),      
+             
+ 
+             wx.getUserInfo({
+               success: function(e) {
+                 console.log(e.userInfo)
+                 app.globalData.userInfo = e.userInfo
+                 that.setData({
+                    userInfo: e.userInfo,
+                    hasUserInfo: true
+                 })
+               }
+             })
+           }
+         }
+       })
   },
    kindToggle: function (e) {
         var id = e.currentTarget.id, list = this.data.list;
@@ -73,50 +118,6 @@ Page({
         getApp().themeChanged(this.data.theme === 'light' ? 'dark' : 'light');
     },
     onLoad: function() {
-      // 查看是否授权
-      var that=this
-      wx.getSetting({
-        success (res){
-          if (res.authSetting['scope.userInfo']) {
-            // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-
-            wx.login({
-                success: function(res) {
-                // 获取登录的临时凭证
-                var code = res.code;
-                // 调用后端，获取微信的session_key, secret
-                console.log(res.code)
-                wx.request({
-                  url: app.globalData.urlc+"/wxLogin",
-                  method: "POST",
-                  data:{
-                    code:res.code
-                  },
-                  header: {
-                    'content-type': 'application/x-www-form-urlencoded'
-                  },
-                  success: function(result) {
-                    console.log(result.data);
-                    // 保存用户信息到本地缓存，可以用作小程序端的拦截器
-                    app.globalData.openid=result.data
-                   }
-                 })  
-                }
-              }),      
-            
-
-            wx.getUserInfo({
-              success: function(e) {
-                console.log(e.userInfo)
-                app.globalData.userInfo = e.userInfo
-                that.setData({
-                   userInfo: e.userInfo,
-                   hasUserInfo: true
-                })
-              }
-            })
-          }
-        }
-      })
+   
     },
 })
